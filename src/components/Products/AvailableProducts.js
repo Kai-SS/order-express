@@ -30,8 +30,9 @@ const DUMMY_PRODS = [
 ];
 
 const AvailableProducts = () => {
-  const mealsList = DUMMY_PRODS.map((prod) => (
+  const productsList = DUMMY_PRODS.map((prod) => (
     <ProductItem
+      id={prod.id}
       key={prod.id}
       name={prod.name}
       description={prod.description}
@@ -41,7 +42,7 @@ const AvailableProducts = () => {
   return (
     <section className={classes.products}>
       <Card>
-        <ul>{mealsList}</ul>
+        <ul>{productsList}</ul>
       </Card>
     </section>
   );
