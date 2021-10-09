@@ -1,36 +1,31 @@
 import Card from "../UI/Card";
 import ProductItem from "./ProductItem/ProductItem";
 import classes from "./AvailableProducts.module.css";
-
-const DUMMY_PRODS = [
-  {
-    id: "m1",
-    name: "iPhone 12 Pro",
-    description: "Blast past fast.",
-    price: 1699,
-  },
-  {
-    id: "m2",
-    name: "iPad Pro 12.9-inch",
-    description: "The ultimate iPad experience.",
-    price: 1649,
-  },
-  {
-    id: "m3",
-    name: "MacBook Pro 16-inch",
-    description: "The best for the brightest",
-    price: 4099,
-  },
-  {
-    id: "m4",
-    name: "iMac 27-inch",
-    description: "Ready for big things.",
-    price: 2699,
-  },
-];
+import { useEffect, useState } from "react";
 
 const AvailableProducts = () => {
-  const productsList = DUMMY_PRODS.map((prod) => (
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const response = await fetch(
+        "https://orderexpress-fda47-default-rtdb.asia-southeast1.firebasedatabase.app/products.json"
+      );
+      const responseData = await response.json();
+      const loadProducts = [];
+      for (const key in responseData) {
+        loadProducts.push({
+          id: key,
+          name: responseData[key].name,
+          description: responseData[key].description,
+          price: responseData[key].price,
+        });
+      }
+      setProducts(loadProducts);
+    };
+    fetchProducts();
+  }, []);
+
+  const productsList = products.map((prod) => (
     <ProductItem
       id={prod.id}
       key={prod.id}
