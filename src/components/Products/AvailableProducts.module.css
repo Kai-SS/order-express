@@ -5,6 +5,11 @@
   animation: products-appear 1s ease-out forwards;
 }
 
+.prodLoading {
+  text-align: center;
+  color: white;
+}
+
 .products ul {
   list-style: none;
   margin: 0;

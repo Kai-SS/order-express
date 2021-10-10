@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 
 const AvailableProducts = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(
@@ -21,9 +23,18 @@ const AvailableProducts = () => {
         });
       }
       setProducts(loadProducts);
+      setIsLoading(false);
     };
     fetchProducts();
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={classes.prodLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   const productsList = products.map((prod) => (
     <ProductItem
