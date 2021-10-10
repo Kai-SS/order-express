@@ -10,6 +10,11 @@
   color: white;
 }
 
+.prodError {
+  text-align: center;
+  color: red;
+}
+
 .products ul {
   list-style: none;
   margin: 0;

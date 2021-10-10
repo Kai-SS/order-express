@@ -6,12 +6,17 @@ import { useEffect, useState } from "react";
 const AvailableProducts = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
       const response = await fetch(
         "https://orderexpress-fda47-default-rtdb.asia-southeast1.firebasedatabase.app/products.json"
       );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
       const responseData = await response.json();
       const loadProducts = [];
       for (const key in responseData) {
@@ -25,13 +30,25 @@ const AvailableProducts = () => {
       setProducts(loadProducts);
       setIsLoading(false);
     };
-    fetchProducts();
+
+    fetchProducts().catch((error) => {
+      setIsLoading(false);
+      setIsError(error.message);
+    });
   }, []);
 
   if (isLoading) {
     return (
       <section className={classes.prodLoading}>
         <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (isError) {
+    return (
+      <section className={classes.prodError}>
+        <p>{isError}</p>
       </section>
     );
   }
