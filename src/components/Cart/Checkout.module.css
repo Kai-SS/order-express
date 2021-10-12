@@ -55,10 +55,10 @@
 }
 
 .invalid label {
-  color: #3b56b1;
+  color: #db323a;
 }
 
 .invalid input {
-  border-color: #3b56b1;
+  border-color: #e6353e;
   background-color: #ffeff1;
 }
