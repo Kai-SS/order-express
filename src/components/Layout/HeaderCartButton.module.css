@@ -11,6 +11,11 @@
   border-radius: 25px;
   font-weight: bold;
 }
+@media (max-width: 428px) {
+  .button {
+    padding: 0.5rem 0.8rem;
+  }
+}
 
 .button:hover,
 .button:active {
