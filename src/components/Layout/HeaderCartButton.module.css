@@ -11,7 +11,7 @@
   border-radius: 25px;
   font-weight: bold;
 }
-@media (max-width: 428px) {
+@media (max-width: 768px) {
   .button {
     padding: 0.5rem 0.8rem;
   }
