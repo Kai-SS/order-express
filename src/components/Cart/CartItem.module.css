@@ -12,6 +12,12 @@
   color: #363636;
 }
 
+@media (max-width: 768px) {
+  .cart-item h2 {
+    font-size: 1rem;
+  }
+}
+
 .summary {
   width: 10rem;
   display: flex;
